@@ -113,6 +113,8 @@ header {
 
 /* Table =====================*/
 #data-table {
+  display: block;
+  overflow-x: auto;
   width: 100%;
   border-spacing: 0 0.5rem; /*eixo vertical -- eixo horizontal*/
   color: #969cb3;
