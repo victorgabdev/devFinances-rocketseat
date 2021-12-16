@@ -6,11 +6,16 @@ class Modal {
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
+// Criar uma classe para adicionar description e retirar description
 
 class DevFinance {
   // Links
   linkForModal = document.querySelector('a.button.new');
   linkForCloseModal = document.querySelector('a.button.cancel');
+
+  //img close
+  imgsCloseNodeList = document.querySelectorAll('.img-close');
+  imgsCloseArray = Array.prototype.slice.call(this.imgsCloseNodeList);
 
   // submit de modal
   form = document.querySelector('#form');
@@ -19,13 +24,16 @@ class DevFinance {
     document.addEventListener('click', (event) => {
       if(event.target == this.linkForModal) Modal.open();
       if(event.target == this.linkForCloseModal) Modal.close();
+      this.imgsCloseArray.forEach((tagImg) => {
+        if(this.tagImgisEventTarget(tagImg, event.target)) this.removeTransaction(tagImg);
+      });
     });
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const informationsForTd = this.catchInformationsForDataTable();
       const tr = this.createTr();
-      this.addDescription(informationsForTd, tr);
+      this.addTransaction(informationsForTd, tr);
       Modal.close();
     });
   }
@@ -53,7 +61,8 @@ class DevFinance {
   createTdImage() {
     const path = './assets/img/minus.svg';
     const alt = 'Imagem que representa um botao de saída da descrição da tabela';
-    return `<td><img src="${path}" alt="${alt}"></td>`
+    const clas = "img-close";
+    return `<td><img src="${path}" alt="${alt}" class="${clas}"></td>`;
   }
 
   getClassTdValue(firstElement) {
@@ -63,7 +72,7 @@ class DevFinance {
   }
 
 
-  addDescription(arrayOfValues, tr) {
+  addTransaction(arrayOfValues, tr) {
     let classTdValue = this.getClassTdValue(arrayOfValues.value[0]);
 
     const tbody = document.querySelector('#bodyOfData-table');
@@ -74,10 +83,22 @@ class DevFinance {
 
 
     tr.innerHTML = tdDescription + tdValue + tdDate + tdImage;
-    tbody.append(tr); 
+    tbody.append(tr);
+    this.addImageToImgCloses(tr);
   }
   
+  addImageToImgCloses(tr) {
+    const img = tr.lastElementChild.lastElementChild;
+    this.imgsCloseArray.push(img);
+  }
 
+  tagImgisEventTarget(tagImg, currentTag) {
+    if(tagImg === currentTag) return true;
+  }
+
+  removeTransaction(tagImg) {
+    tagImg.parentNode.parentNode.remove();
+  }
 }
 
 const devFinance = new DevFinance();
