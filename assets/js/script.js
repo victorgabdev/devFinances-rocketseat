@@ -26,9 +26,7 @@ class DevFinance {
       const informationsForTd = this.catchInformationsForDataTable();
       const tr = this.createTr();
       this.addDescription(informationsForTd, tr);
-      // fechar modal
       Modal.close();
-      // validar valores digitados no form
     });
   }
 
