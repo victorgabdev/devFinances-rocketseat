@@ -3,10 +3,13 @@ class Modal {
     document.querySelector('.modal-overlay').classList.add('active');
   }
   static close(){
+    const devFinance = new DevFinance();
+    devFinance.clearInputValues();  // limpando o input toda vez que o usuário fechar o modal
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
 
+// Validar data 
 class DevFinance {
   // Links
   linkForModal = document.querySelector('a.button.new');
@@ -66,7 +69,7 @@ class DevFinance {
     return [modalDescription, modalValue, modalDate];
   }
 
-  clearInputValues(description, value, date) {
+  clearInputValues() {
     const tagsInput = this.defineInputTags();
     tagsInput[0].value = ''; // description
     tagsInput[1].value = '';  // value
@@ -96,13 +99,13 @@ class DevFinance {
   }
 
 
-  addTransaction(arrayOfValues, tr) {
-    let classTdValue = this.getClassTdValue(arrayOfValues.value[0]);
+  addTransaction(objectOfValues, tr) {
+    let classTdValue = this.getClassTdValue(objectOfValues.value[0]);
 
     const tbody = document.querySelector('#bodyOfData-table');
-    const tdDescription = this.createTd('description',arrayOfValues.description);
-    const tdValue = this.createTd(classTdValue, arrayOfValues.value);
-    const tdDate = this.createTd('date', arrayOfValues.date);
+    const tdDescription = this.createTd('description',objectOfValues.description);
+    const tdValue = this.createTd(classTdValue, objectOfValues.value);
+    const tdDate = this.createTd('date', objectOfValues.date);
     const tdImage = this.createTdImage();
 
 
