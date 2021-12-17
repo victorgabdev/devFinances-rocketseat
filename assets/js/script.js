@@ -134,6 +134,56 @@ class DevFinance {
     tr.innerHTML = tdDescription + tdValue + tdDate + tdImage;
     tbody.append(tr);
     this.addImageToImgCloses(tr);
+    this.balanceSheetAccount(objectOfValues.value, classTdValue);
+  }
+
+  transformStrInNumber(str) {
+    return Number(str);
+  }
+
+  transformNumberInStr(number) {
+    return String(number);
+  }
+
+  balanceSheetAccount(value, clas) {
+    //income -> entrada
+    // expense -> saídas
+    value = value.replace('-', '');
+    value = this.transformStrInNumber(value);
+
+    const pBalanceTotal = document.querySelector('#balance-total');
+    let cardTotal = pBalanceTotal.textContent;
+    cardTotal = cardTotal.replace('R$', '');
+    cardTotal = this.transformStrInNumber(cardTotal);
+
+    if(clas === 'income') {
+      const pBalanceIncome = document.querySelector('#balance-income')
+      let cardIncome = pBalanceIncome.textContent;
+      cardIncome = cardIncome.replace('R$', '');
+      cardIncome = this.transformStrInNumber(cardIncome); // card
+      console.log(value, cardIncome);
+      cardIncome += value;
+      cardTotal += value;
+      cardIncome = cardIncome.toFixed(2);
+      cardIncome = this.transformNumberInStr(cardIncome);
+      pBalanceIncome.innerText = "R$ " + cardIncome;
+    }
+
+    if(clas === 'expense') {
+      const pBalanceExpense = document.querySelector('#balance-expense');
+      let cardExpense = pBalanceExpense.textContent;
+      cardExpense = cardExpense.replace('R$', '');
+      cardExpense = this.transformStrInNumber(cardExpense);
+      cardExpense += value;
+      cardTotal -= value;
+      cardExpense = cardExpense.toFixed(2);
+      cardExpense = this.transformNumberInStr(cardExpense);
+      pBalanceExpense.innerText = "R$ " + cardExpense;
+    }
+
+    cardTotal = cardTotal.toFixed(2);
+    cardTotal = this.transformNumberInStr(cardTotal);
+    pBalanceTotal.innerText = "R$ " + cardTotal;
   }
   
   addImageToImgCloses(tr) {

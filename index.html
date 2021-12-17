@@ -31,7 +31,7 @@
             <span>Entradas</span>
             <img src="./assets/img/income.svg" alt="Imagem de entradas">
           </h3>
-          <p>R$ 5.000,00</p>
+          <p id="balance-income">R$ 0.0</p>
         </div>
 
         <div class="card">
@@ -39,7 +39,7 @@
             <span>Saídas</span>
               <img src="./assets/img/expense.svg" alt="Imagem de Saídas">
           </h3>
-          <p>R$ 2.000,00</p>
+          <p id="balance-expense">R$ 0.0</p>
         </div>
 
         <div class="card total">
@@ -47,7 +47,7 @@
             <span>Total</span>
               <img src="./assets/img/total.svg" alt="Imagem de total">
           </h3>
-          <p>R$ 3.000,00</p>
+          <p id="balance-total">R$ 0.0</p>
         </div>
       </section>
 
@@ -98,7 +98,7 @@
               name="amount" 
               placeholder="0,00"
               >
-              <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+              <small class="help">Use o sinal - (negativo) para despesas e . (ponto) para casas decimais</small>
               <small id="error-value" class="help error no-error">Digite um valor válido!</small>
             </div>
 
