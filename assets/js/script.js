@@ -9,7 +9,8 @@ class Modal {
   }
 }
 
-// Validar data 
+// Validar data e entrada
+
 class DevFinance {
   // Links
   linkForModal = document.querySelector('a.button.new');
@@ -36,6 +37,7 @@ class DevFinance {
       const informationsForTd = this.catchInformationsForDataTable();
       const tr = this.createTr();
       this.addTransaction(informationsForTd, tr);
+      console.log(this.inputsIsValid(informationsForTd));
       this.clearInputValues();
       Modal.close();
     });
@@ -74,6 +76,16 @@ class DevFinance {
     tagsInput[0].value = ''; // description
     tagsInput[1].value = '';  // value
     tagsInput[2].value = '';  // date
+  }
+
+  inputsIsValid(objectOfValues) {
+    if(objectOfValues.description === '') {
+      alert('Digite uma descrição válida!');
+      return false;
+    }
+    if(objectOfValues.value === '' || objectOfValues.value == 0) return false;
+    if(objectOfValues.date === 'undefined/undefined/') return false;
+    return true;
   }
 
   createTr() {

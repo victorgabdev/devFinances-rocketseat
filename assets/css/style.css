@@ -229,6 +229,11 @@ td.expense {
   z-index: 1;
 }
 
+.error {
+  color: var(--red);
+  display: none; /*Transformar em display block*/
+}
+
 /* Form =====================*/
 #form {
   max-width: 500px;
