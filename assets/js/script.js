@@ -6,7 +6,6 @@ class Modal {
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
-// Criar uma classe para adicionar description e retirar description
 
 class DevFinance {
   // Links
@@ -34,14 +33,16 @@ class DevFinance {
       const informationsForTd = this.catchInformationsForDataTable();
       const tr = this.createTr();
       this.addTransaction(informationsForTd, tr);
+      this.clearInputValues();
       Modal.close();
     });
   }
 
   catchInformationsForDataTable() {
-    const modalDescription = document.querySelector('#description');
-    const modalValue = document.querySelector('#amount');
-    const modalDate = document.querySelector('#date');
+    const tags = this.defineInputTags();
+    const modalDescription = tags[0];
+    const modalValue = tags[1];
+    const modalDate = tags[2];
     const dateInBrStyle = this.tranformingDateToBrStyle(modalDate.value);
     return {
       description: modalDescription.value,
@@ -56,6 +57,20 @@ class DevFinance {
     const month = dateEngArray[1];
     const days = dateEngArray[2];
     return `${days}/${month}/${year}`;
+  }
+
+  defineInputTags() {
+    const modalDescription = document.querySelector('#description');
+    const modalValue = document.querySelector('#amount');
+    const modalDate = document.querySelector('#date');
+    return [modalDescription, modalValue, modalDate];
+  }
+
+  clearInputValues(description, value, date) {
+    const tagsInput = this.defineInputTags();
+    tagsInput[0].value = ''; // description
+    tagsInput[1].value = '';  // value
+    tagsInput[2].value = '';  // date
   }
 
   createTr() {
