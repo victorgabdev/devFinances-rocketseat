@@ -9,7 +9,6 @@ class Modal {
   }
 }
 
-// Validar data e entrada
 
 class DevFinance {
   // Links
@@ -28,7 +27,7 @@ class DevFinance {
       if(event.target == this.linkForModal) Modal.open();
       if(event.target == this.linkForCloseModal) Modal.close();
       this.imgsCloseArray.forEach((tagImg) => {
-        if(this.tagImgisEventTarget(tagImg, event.target)) this.removeTransaction(tagImg);
+        if(tagImg === event.target) this.removeTransaction(tagImg);
       });
     });
 
@@ -39,33 +38,30 @@ class DevFinance {
       const isValid = this.inputsIsValid(informationsForTd);
       if(!isValid.valid) {
         this.showErrorMessage(isValid.id);
-      } else {
-        this.addNoErrorClass(isValid.id)
-        this.addTransaction(informationsForTd, tr);
-        this.clearInputValues();
-        Modal.close();
+        return
       }
+      this.addNoErrorClass(isValid.idsError)
+      this.addTransaction(informationsForTd, tr);
+      this.clearInputValues();
+      Modal.close();
     });
   }
 
   catchInformationsForDataTable() {
     const tags = this.defineInputTags();
-    const modalDescription = tags[0];
-    const modalValue = tags[1];
-    const modalDate = tags[2];
-    const dateInBrStyle = this.tranformingDateToBrStyle(modalDate.value);
+    const dateInBrStyle = this.tranformingDateToBrStyle(tags.date.value);
     return {
-      description: modalDescription.value,
-      value: modalValue.value,
+      description: tags.description.value,
+      value: tags.value.value,
       date: dateInBrStyle
     }
   }
 
-  tranformingDateToBrStyle(dateEng) {
-    const dateEngArray = dateEng.split('-');
-    const year = dateEngArray[0];
-    const month = dateEngArray[1];
-    const days = dateEngArray[2];
+  tranformingDateToBrStyle(dateEnglishVersionStr) {
+    const dateEnglishVersionArray = dateEnglishVersionStr.split('-');
+    const year = dateEnglishVersionArray[0];
+    const month = dateEnglishVersionArray[1];
+    const days = dateEnglishVersionArray[2];
     return `${days}/${month}/${year}`;
   }
 
@@ -73,14 +69,14 @@ class DevFinance {
     const modalDescription = document.querySelector('#description');
     const modalValue = document.querySelector('#amount');
     const modalDate = document.querySelector('#date');
-    return [modalDescription, modalValue, modalDate];
+    return {description: modalDescription, value: modalValue, date: modalDate};
   }
 
   clearInputValues() {
     const tagsInput = this.defineInputTags();
-    tagsInput[0].value = ''; // description
-    tagsInput[1].value = '';  // value
-    tagsInput[2].value = '';  // date
+    tagsInput.description.value = ''; 
+    tagsInput.value.value = '';  
+    tagsInput.date.value = '';  
   }
 
   inputsIsValid(objectOfValues) {
@@ -88,14 +84,13 @@ class DevFinance {
     if(objectOfValues.description === '') return {valid: false, id: ids[0]};
     if(objectOfValues.value === '' || objectOfValues.value == 0) return {valid: false, id: ids[1]};
     if(objectOfValues.date === 'undefined/undefined/') return {valid: false, id: ids[2]};
-    return {valid: true, id: ids};
+    return {valid: true, idsError: {description: ids[0], value: ids[1], date: ids[2]}};
   }
 
   addNoErrorClass(ids) {
-    for(let id of ids) {
-      let tagOfError = document.querySelector(id);
-      tagOfError.classList.add('no-error');
-    }
+    document.querySelector(ids.description).classList.add('no-error');
+    document.querySelector(ids.value).classList.add('no-error');
+    document.querySelector(ids.date).classList.add('no-error'); 
   }
 
   showErrorMessage(id) {
@@ -144,10 +139,6 @@ class DevFinance {
   addImageToImgCloses(tr) {
     const img = tr.lastElementChild.lastElementChild;
     this.imgsCloseArray.push(img);
-  }
-
-  tagImgisEventTarget(tagImg, currentTag) {
-    if(tagImg === currentTag) return true;
   }
 
   removeTransaction(tagImg) {
