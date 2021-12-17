@@ -36,10 +36,15 @@ class DevFinance {
       event.preventDefault();
       const informationsForTd = this.catchInformationsForDataTable();
       const tr = this.createTr();
-      this.addTransaction(informationsForTd, tr);
-      console.log(this.inputsIsValid(informationsForTd));
-      this.clearInputValues();
-      Modal.close();
+      const isValid = this.inputsIsValid(informationsForTd);
+      if(!isValid.valid) {
+        this.showErrorMessage(isValid.id);
+      } else {
+        this.addNoErrorAttribute(isValid.id)
+        this.addTransaction(informationsForTd, tr);
+        this.clearInputValues();
+        Modal.close();
+      }
     });
   }
 
@@ -79,13 +84,23 @@ class DevFinance {
   }
 
   inputsIsValid(objectOfValues) {
-    if(objectOfValues.description === '') {
-      alert('Digite uma descrição válida!');
-      return false;
+    const ids = ['#error-description', '#error-value', '#error-date'];
+    if(objectOfValues.description === '') return {valid: false, id: ids[0]};
+    if(objectOfValues.value === '' || objectOfValues.value == 0) return {valid: false, id: ids[1]};
+    if(objectOfValues.date === 'undefined/undefined/') return {valid: false, id: ids[2]};
+    return {valid: true, id: ids};
+  }
+
+  addNoErrorAttribute(ids) {
+    for(let id of ids) {
+      let tagOfError = document.querySelector(id);
+      tagOfError.classList.add('no-error');
     }
-    if(objectOfValues.value === '' || objectOfValues.value == 0) return false;
-    if(objectOfValues.date === 'undefined/undefined/') return false;
-    return true;
+  }
+
+  showErrorMessage(id) {
+    const tagError = document.querySelector(id);
+    tagError.classList.remove('no-error');
   }
 
   createTr() {

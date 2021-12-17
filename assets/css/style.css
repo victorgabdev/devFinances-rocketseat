@@ -231,7 +231,11 @@ td.expense {
 
 .error {
   color: var(--red);
-  display: none; /*Transformar em display block*/
+  display: block; /*Transformar em display block*/
+}
+
+.no-error {
+  display: none;
 }
 
 /* Form =====================*/

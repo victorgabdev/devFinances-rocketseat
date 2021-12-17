@@ -86,7 +86,7 @@
               name="description" 
               placeholder="Descrição"
               >
-              <small class="help error">Digite uma descrição válida</small>
+              <small id="error-description" class="help error no-error">Digite uma descrição válida</small>
             </div>
 
             <div class="input-group">
@@ -99,9 +99,7 @@
               placeholder="0,00"
               >
               <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
-              <br>
-              <small class="help error">Digite um valor que não é 0</small>
-              <small class="help error">Digite um valor válido!</small>
+              <small id="error-value" class="help error no-error">Digite um valor válido!</small>
             </div>
 
             <div class="input-group">
@@ -112,7 +110,7 @@
               name="date"       
               placeholder="01/01/2021"       
               >
-              <small class="help error">Digite uma data válida</small>
+              <small id="error-date" class="help error no-error">Digite uma data válida</small>
             </div>
 
             <div class="input-group actions">
