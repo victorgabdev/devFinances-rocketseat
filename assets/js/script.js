@@ -42,11 +42,20 @@ class DevFinance {
     const modalDescription = document.querySelector('#description');
     const modalValue = document.querySelector('#amount');
     const modalDate = document.querySelector('#date');
+    const dateInBrStyle = this.tranformingDateToBrStyle(modalDate.value);
     return {
       description: modalDescription.value,
       value: modalValue.value,
-      date: modalDate.value
+      date: dateInBrStyle
     }
+  }
+
+  tranformingDateToBrStyle(dateEng) {
+    const dateEngArray = dateEng.split('-');
+    const year = dateEngArray[0];
+    const month = dateEngArray[1];
+    const days = dateEngArray[2];
+    return `${days}/${month}/${year}`;
   }
 
   createTr() {
