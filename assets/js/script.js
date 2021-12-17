@@ -40,7 +40,7 @@ class DevFinance {
       if(!isValid.valid) {
         this.showErrorMessage(isValid.id);
       } else {
-        this.addNoErrorAttribute(isValid.id)
+        this.addNoErrorClass(isValid.id)
         this.addTransaction(informationsForTd, tr);
         this.clearInputValues();
         Modal.close();
@@ -91,7 +91,7 @@ class DevFinance {
     return {valid: true, id: ids};
   }
 
-  addNoErrorAttribute(ids) {
+  addNoErrorClass(ids) {
     for(let id of ids) {
       let tagOfError = document.querySelector(id);
       tagOfError.classList.add('no-error');
