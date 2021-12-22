@@ -134,7 +134,7 @@ class DevFinance {
     tr.innerHTML = tdDescription + tdValue + tdDate + tdImage;
     tbody.append(tr);
     this.addImageToImgCloses(tr);
-    this.balanceSheetAccount(objectOfValues.value, classTdValue);
+    this.balanceSheetAccount(objectOfValues.value, classTdValue, true);
   }
 
   transformStrInNumber(str) {
@@ -164,22 +164,34 @@ class DevFinance {
     tag.innerText =  "R$ " + card;
   }
 
-  balanceSheetAccount(value, clas) {
+  balanceSheetAccount(value, clas, action=false) {
     const idsTags = ['#balance-total', '#balance-income', '#balance-expense'];
     value = this.treatingValue(value);
     let cardTotal = this.handleCardsTags(idsTags[0]);
-
-    if(clas === 'income') {
-      let cardIncome = this.handleCardsTags(idsTags[1]); // card
+    let cardIncome = this.handleCardsTags(idsTags[1]);
+    let cardExpense = this.handleCardsTags(idsTags[2]);
+    
+    if(clas === 'income' && action) {
       cardIncome += value;
       cardTotal += value;
       this.showContentOnScreen(idsTags[1], cardIncome);
     }
 
-    if(clas === 'expense') {
-      let cardExpense = this.handleCardsTags(idsTags[2]);;
+    if(clas === 'income' && !action) {
+      cardIncome -= value;
+      cardTotal -= value;
+      this.showContentOnScreen(idsTags[1], cardIncome);
+    }
+
+    if(clas === 'expense' && action) {
       cardExpense += value;
       cardTotal -= value;
+      this.showContentOnScreen(idsTags[2], cardExpense);
+    }
+
+    if(clas === 'expense' && !action) {
+      cardExpense -= value;
+      cardTotal += value;
       this.showContentOnScreen(idsTags[2], cardExpense);
     }
 
@@ -196,7 +208,7 @@ class DevFinance {
     const tdWithInformationsToDelete =  trWillBeDeleted.childNodes[1];
     const value = tdWithInformationsToDelete.textContent;
     const clas = tdWithInformationsToDelete.getAttribute('class');
-    console.log(value, clas);
+    this.balanceSheetAccount(value,clas)
     // excluir por no card de income ou expense e no
 
     trWillBeDeleted.remove();
