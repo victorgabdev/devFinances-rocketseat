@@ -164,37 +164,39 @@ class DevFinance {
     tag.innerText =  "R$ " + card;
   }
 
-  balanceSheetAccount(value, clas, action=false) {
+  incomeInScreen(cardIncome, cardTotal, value, id, add) {
+    if(add) {
+      cardIncome += value;
+      cardTotal += value;
+    } else {
+      cardIncome -= value;
+      cardTotal -= value;
+    }
+    this.showContentOnScreen(id, cardIncome);
+    return cardTotal;
+  }
+
+  expenseInScreen(cardExpense, cardTotal, value, id, add) {
+    if(add) {
+      cardExpense += value;
+      cardTotal -= value;
+    } else {
+      cardExpense -= value;
+      cardTotal += value;
+    }
+    this.showContentOnScreen(id, cardExpense);
+    return cardTotal;
+  }
+
+  balanceSheetAccount(value, clas, add=false) {
     const idsTags = ['#balance-total', '#balance-income', '#balance-expense'];
     value = this.treatingValue(value);
     let cardTotal = this.handleCardsTags(idsTags[0]);
-    let cardIncome = this.handleCardsTags(idsTags[1]);
-    let cardExpense = this.handleCardsTags(idsTags[2]);
+    let cardIncome = this.handleCardsTags(idsTags[1]); 
+    let cardExpense = this.handleCardsTags(idsTags[2]); 
     
-    if(clas === 'income' && action) {
-      cardIncome += value;
-      cardTotal += value;
-      this.showContentOnScreen(idsTags[1], cardIncome);
-    }
-
-    if(clas === 'income' && !action) {
-      cardIncome -= value;
-      cardTotal -= value;
-      this.showContentOnScreen(idsTags[1], cardIncome);
-    }
-
-    if(clas === 'expense' && action) {
-      cardExpense += value;
-      cardTotal -= value;
-      this.showContentOnScreen(idsTags[2], cardExpense);
-    }
-
-    if(clas === 'expense' && !action) {
-      cardExpense -= value;
-      cardTotal += value;
-      this.showContentOnScreen(idsTags[2], cardExpense);
-    }
-
+    if(clas === 'income') cardTotal = this.incomeInScreen(cardIncome, cardTotal, value, idsTags[1], add); 
+    if(clas === 'expense') cardTotal = this.expenseInScreen(cardExpense, cardTotal, value, idsTags[2], add);
     this.showContentOnScreen(idsTags[0], cardTotal);
   }
   
