@@ -145,11 +145,15 @@ class DevFinance {
     return String(number);
   }
 
+  treatingValue(value) {
+    value = value.replace('-', '');
+    return this.transformStrInNumber(value);
+  }
+
   balanceSheetAccount(value, clas) {
     //income -> entrada
     // expense -> saídas
-    value = value.replace('-', '');
-    value = this.transformStrInNumber(value);
+    value = this.treatingValue(value);
 
     const pBalanceTotal = document.querySelector('#balance-total');
     let cardTotal = pBalanceTotal.textContent;
