@@ -150,44 +150,40 @@ class DevFinance {
     return this.transformStrInNumber(value);
   }
 
-  balanceSheetAccount(value, clas) {
-    //income -> entrada
-    // expense -> saídas
-    value = this.treatingValue(value);
+  handleCardsTags(id) {
+    const tag = document.querySelector(id);
+    let card = tag.textContent;
+    card = card.replace('R$', '');
+    return this.transformStrInNumber(card);
+  }
 
-    const pBalanceTotal = document.querySelector('#balance-total');
-    let cardTotal = pBalanceTotal.textContent;
-    cardTotal = cardTotal.replace('R$', '');
-    cardTotal = this.transformStrInNumber(cardTotal);
+  showContentOnScreen(id, card) {
+    const tag = document.querySelector(id);
+    card = card.toFixed(2);
+    card = this.transformNumberInStr(card);
+    tag.innerText =  "R$ " + card;
+  }
+
+  balanceSheetAccount(value, clas) {
+    const idsTags = ['#balance-total', '#balance-income', '#balance-expense'];
+    value = this.treatingValue(value);
+    let cardTotal = this.handleCardsTags(idsTags[0]);
 
     if(clas === 'income') {
-      const pBalanceIncome = document.querySelector('#balance-income')
-      let cardIncome = pBalanceIncome.textContent;
-      cardIncome = cardIncome.replace('R$', '');
-      cardIncome = this.transformStrInNumber(cardIncome); // card
-      console.log(value, cardIncome);
+      let cardIncome = this.handleCardsTags(idsTags[1]); // card
       cardIncome += value;
       cardTotal += value;
-      cardIncome = cardIncome.toFixed(2);
-      cardIncome = this.transformNumberInStr(cardIncome);
-      pBalanceIncome.innerText = "R$ " + cardIncome;
+      this.showContentOnScreen(idsTags[1], cardIncome);
     }
 
     if(clas === 'expense') {
-      const pBalanceExpense = document.querySelector('#balance-expense');
-      let cardExpense = pBalanceExpense.textContent;
-      cardExpense = cardExpense.replace('R$', '');
-      cardExpense = this.transformStrInNumber(cardExpense);
+      let cardExpense = this.handleCardsTags(idsTags[2]);;
       cardExpense += value;
       cardTotal -= value;
-      cardExpense = cardExpense.toFixed(2);
-      cardExpense = this.transformNumberInStr(cardExpense);
-      pBalanceExpense.innerText = "R$ " + cardExpense;
+      this.showContentOnScreen(idsTags[2], cardExpense);
     }
 
-    cardTotal = cardTotal.toFixed(2);
-    cardTotal = this.transformNumberInStr(cardTotal);
-    pBalanceTotal.innerText = "R$ " + cardTotal;
+    this.showContentOnScreen(idsTags[0], cardTotal);
   }
   
   addImageToImgCloses(tr) {
