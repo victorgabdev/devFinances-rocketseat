@@ -192,7 +192,14 @@ class DevFinance {
   }
 
   removeTransaction(tagImg) {
-    tagImg.parentNode.parentNode.remove();
+    const trWillBeDeleted = tagImg.parentNode.parentNode;
+    const tdWithInformationsToDelete =  trWillBeDeleted.childNodes[1];
+    const value = tdWithInformationsToDelete.textContent;
+    const clas = tdWithInformationsToDelete.getAttribute('class');
+    console.log(value, clas);
+    // excluir por no card de income ou expense e no
+
+    trWillBeDeleted.remove();
   }
 }
 
