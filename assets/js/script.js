@@ -203,14 +203,15 @@ class DevFinance {
     this.imgsCloseArray.push(img);
   }
 
+  catchInformationsToDeleteCards(tag) {
+    tag = tag.childNodes[1];
+    return {value: tag.textContent, clas: tag.getAttribute('class')};
+  }
+
   removeTransaction(tagImg) {
     const trWillBeDeleted = tagImg.parentNode.parentNode;
-    const tdWithInformationsToDelete =  trWillBeDeleted.childNodes[1];
-    const value = tdWithInformationsToDelete.textContent;
-    const clas = tdWithInformationsToDelete.getAttribute('class');
-    this.balanceSheetAccount(value,clas)
-    // excluir por no card de income ou expense e no
-
+    const td =  this.catchInformationsToDeleteCards(trWillBeDeleted);
+    this.balanceSheetAccount(td.value,td.clas)
     trWillBeDeleted.remove();
   }
 }
