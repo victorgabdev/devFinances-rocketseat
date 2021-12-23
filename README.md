@@ -32,4 +32,3 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-![1f6e0](https://user-images.githubusercontent.com/75862737/147276136-7ef016ac-fdb8-4529-8fed-aa99c5b9418a.png)
