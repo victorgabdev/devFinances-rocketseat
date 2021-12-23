@@ -15,6 +15,8 @@
   <li>Excluindo uma transação</li>
   <li>Analisar o total de dinheiro em caixa</li>
   </ul>
+### 🎥 Video da Aplicação
+<img src="assets/video/devFinances.gif"/>
 <h2>Observações</h2>
 O projeto foi pautado na aplicação dev finances da Rocketseat.
 <br>
