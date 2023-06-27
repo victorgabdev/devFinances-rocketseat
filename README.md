@@ -2,7 +2,9 @@
   <img src="./assets/img/logo.svg" width="350" title="hover text">
   <p>Aplicação de Controle Financeiro</p>
 </div>
-  <h1>💻 Sobre o Projeto</h1>
+
+# 💻 Sobre o Projeto
+  
   <p>Dev finances é um Site de Controle financeiro, colocando a sua renda e os seus gastos mensais dentro da aplicação        você pode ter um controle maior da sua vida financeira.</p>
   <p>Os usários poderão utilizar o site da seguinte forma:</p>
   <ul>
@@ -15,7 +17,9 @@
   <li>Excluindo uma transação</li>
   <li>Analisar o total de dinheiro em caixa</li>
   </ul>
+  
 ### 🎥 Video da Aplicação
+
 <img src="assets/video/devFinances.gif"/>
 <h2>Observações</h2>
 O projeto foi pautado na aplicação dev finances da Rocketseat.
