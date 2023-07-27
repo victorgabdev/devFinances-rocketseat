@@ -1,40 +1,33 @@
-<div align="center">
-  <img src="./assets/img/logo.svg" width="350" title="hover text">
-  <p>Aplicação de Controle Financeiro</p>
-</div>
+# Aplicação de Controle Financeiro "Dev finances"
 
-# 💻 Sobre o Projeto
-  
-  <p>Dev finances é um Site de Controle financeiro, colocando a sua renda e os seus gastos mensais dentro da aplicação        você pode ter um controle maior da sua vida financeira.</p>
-  <p>Os usários poderão utilizar o site da seguinte forma:</p>
-  <ul>
-    <li>Adicionando uma nova transação</li>
-      <ol type="a">
-        <li>Descrição (exemplo: Salário).</li>
-        <li>Valor (exemplo: R$ 6000.00).</li>
-        <li>Data (exemplo 09/11/1998).</li>
-      </ol>
-  <li>Excluindo uma transação</li>
-  <li>Analisar o total de dinheiro em caixa</li>
-  </ul>
-  
+![Logo da Aplicação](./assets/img/logo.svg)
+
+## 💻 Sobre o Projeto
+
+A aplicação "Dev finances" é um site de controle financeiro que permite ao usuário inserir suas receitas e despesas mensais, oferecendo um controle detalhado de sua vida financeira. Com essa ferramenta, é possível:
+
+- Adicionar novas transações, incluindo descrição, valor e data.
+- Excluir transações existentes.
+- Analisar o saldo total disponível.
+
+O projeto tem como objetivo auxiliar os usuários a gerenciarem suas finanças de forma simples e eficiente.
+
 ### 🎥 Video da Aplicação
 
-<img src="assets/video/devFinances.gif"/>
-<h2>Observações</h2>
-O projeto foi pautado na aplicação dev finances da Rocketseat.
-<br>
-Landind page foi feita seguindo o tutorial da rocket e toda a parte lógica do site é solução pessoal.
-<br>
+![Video da Aplicação](assets/video/devFinances.gif)
 
-<h4> 
-	🚧  dev.finance$ Em construção...  🚧
-</h4>
+## Observações
 
-### 🛠 Tecnologias
+O projeto foi inspirado na aplicação "dev finances" desenvolvida pela Rocketseat. A landing page foi criada seguindo o tutorial da Rocketseat, enquanto toda a lógica e funcionalidade do site foram implementadas de forma pessoal.
 
-As seguintes ferramentas foram usadas na construção do projeto:
+## 🛠 Tecnologias Utilizadas
 
-- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+O projeto foi construído utilizando as seguintes tecnologias:
+
+- HTML5: para estruturação da página web.
+- CSS3: para estilização e design responsivo.
+- JavaScript: para implementação da lógica e funcionalidades da aplicação.
+
+## 🚧 Em Construção...
+
+A aplicação "dev finances" ainda está em desenvolvimento, e novas funcionalidades podem ser adicionadas no futuro para melhorar ainda mais a experiência do usuário.
